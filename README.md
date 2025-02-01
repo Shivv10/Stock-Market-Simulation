@@ -44,5 +44,5 @@ Ensure you have the following installed on your system:
 This project is licensed under the **MIT License**. Feel free to modify and distribute.
 
 ## 👥 Contributors
-- **Shiv Gandhi** ([GitHub](https://github.com/your-username))
+- **Shiv Gandhi** 
 - Open for contributions! Feel free to submit a PR. 🚀
