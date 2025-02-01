@@ -76,7 +76,6 @@ public class Main
 	//Status of a stock
 	else if(splitted[0].equals("STATUS"))
 	{
-	    //System.out.println("Status of: " + splitted[1]);
 	    sm.printStockInfo(splitted[1]);
 	}
 
@@ -96,9 +95,7 @@ public class Main
     {
 	StockMarket sm = new StockMarket();
 
-	//String filename = args[0];
-//	String filename = "a1_data.txt";
-	String filename = "a1_data-v2.txt";
+	String filename = "a1_data.txt";
 	try
 	{
 	    BufferedReader in = new BufferedReader(new FileReader(new File(filename)));
