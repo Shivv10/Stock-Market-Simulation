@@ -95,7 +95,7 @@ public class Main
     {
 	StockMarket sm = new StockMarket();
 
-	String filename = "a1_data.txt";
+	String filename = "data.txt";
 	try
 	{
 	    BufferedReader in = new BufferedReader(new FileReader(new File(filename)));
