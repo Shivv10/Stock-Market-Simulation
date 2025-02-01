@@ -1,0 +1,148 @@
+# Adding stock COMP
+STOCK COMP
+# Adding duplicate stock
+STOCK COMP
+# Checking status of COMP
+STATUS COMP
+# Checking status of stock that does not exit
+STATUS MATH
+# Adding stock MATH
+STOCK MATH
+# Adding stock BIO
+STOCK BIO
+# Adding new account with no stocks
+NEW 100000 10000.10
+# Printing the balance of this new account
+BALANCE 100000
+# Adding duplicate account
+NEW 100000 1111
+# Adding new account with 100 stocks of COMP at $10
+NEW 100001 15000 COMP-100-10
+# Print balance of this new account
+BALANCE 100001
+# Printing balance of account that does not exist
+BALANCE 25
+# Adding new account with 100 stocks of COMP at $9.95 and 100 stocks of BIO at $5.55
+NEW 100002 25000.99 COMP-100-9.95 BIO-100-5.55
+# Printing the balance of this account
+BALANCE 100002
+# Trying to add a new account with stocks that don't exist
+NEW 100003 55555 COMP-100-9 TEST-100-100 HAM-100-1.1
+# Adding new account with 100 stocks of MATH at $22 and 100 stocks of BIO at $6
+NEW 100003 55555 MATH-100-22 BIO-100-6
+# Printing the balance of this new account
+BALANCE 100003
+# Adding a new account with no money and no stocks
+NEW 100004 0
+# Printing the balance of this new account
+BALANCE 100004
+# Trying to add and ask order of COMP from 100003 (doesn't own COMP)
+ADD ASK 100003 COMP 100 15
+# Adding an ask order of COMP from 100001
+ADD ASK 100001 COMP 100 15
+# Printing status of COMP stock
+STATUS COMP
+# Account 100004 with no money tries to send a bid for COMP (invalid)
+ADD BID 100004 COMP 100 15
+# Adding account 100005 with $1009
+NEW 100005 1009
+# Printing balance of this new account
+BALANCE 100005
+# Account 100005 tries to send a bid for 100 of COMP at $10, for a total of $1000 --> invalid because not enough money to pay transaction fees
+ADD BID 100005 COMP 100 10
+# Account 100005 now tries to send a bid for 100 of COMP at $9.99 (valid)
+ADD BID 100005 COMP 100 9.99
+# Check status of COMP stock
+STATUS COMP
+# Account 100006 tries to send a bid (account does not exist)
+ADD BID 100006 COMP 100 10
+# Account 100001 tries to send an ask for COMP at 10.50 (duplicate)
+ADD ASK 100001 COMP 100 10.5
+# Account 100001 removes its ask for COMP
+REMOVE ASK 100001 COMP
+# status of COMP
+STATUS COMP
+# Account 100001 now resends an ask for COMP at 10.50
+ADD ASK 100001 COMP 100 10.5
+# status of COMP
+STATUS COMP
+# Account 100002 sends an ask of COMP at $9.90, should trigger a transaction at $9.99
+ADD ASK 100002 COMP 100 9.9
+# status of COMP, price should be at $9.99, and the two orders should have disappeared
+STATUS COMP
+# Checking balance of 100005, should now hold 100 of COMP at $9.99 and balance should be $0.01
+BALANCE 100005
+# Checking balance of 100002, should not hold COMP anymore and should have a balance of 25990
+BALANCE 100002
+# Account 100003 sends an ask of 100 BIO at $7
+ADD ASK 100003 BIO 100 7
+# Checking status of BIO
+STATUS BIO
+# Account 100002 sends bid for 100 of BIO at $6.95
+ADD BID 100002 BIO 100 6.95
+# Status of BIO
+STATUS BIO
+# Account 100002 sends ask for 100 of BIO at $6.95 (should sell to itself)
+ADD ASK 100002 BIO 100 6.95
+# Status of BIO
+STATUS BIO
+# Balance of 100002
+BALANCE 100002
+# Account 100002 sends bid for 100 of BIO at $6.66
+ADD BID 100002 BIO 100 6.66
+# Status of BIO
+STATUS BIO
+# Account 100003 sends an ask of 100 BIO at $6.76 (duplicate)
+ADD ASK 100003 BIO 100 6.76
+# Account 100003 removes its ask of BIO
+REMOVE ASK 100003 BIO
+# Status of BIO
+STATUS BIO
+# Account 100003 sends an ask of 100 BIO at $6.76
+ADD ASK 100003 BIO 100 6.76
+# Status of BIO
+STATUS BIO
+# Account 100002 sends a new bid for 100 BIO at $6.80 (duplicate)
+ADD BID 100002 BIO 100 6.80
+# Account 100002 removes its bid for BIO
+REMOVE BID 100002 BIO
+# Status of BIO
+STATUS BIO
+# Account 100002 sends a new bid for 100 BIO at $6.80 (triggers a transaction at $6.76)
+ADD BID 100002 BIO 100 6.80
+# Status of BIO (price should be $6.76, no more bids and asks)
+STATUS BIO
+# Balance of 100002 --> now owns two times 100 BIO, and balance = 25284.03
+BALANCE 100002
+# Balance of 100003 --> now owns only MATH, and balance = 56221.01
+BALANCE 100003
+# Creating new account with a balance of 2300
+NEW 111111 2300
+# Balance of this new account
+BALANCE 111111
+# New bid of 111111 for 100 of MATH at 20.00
+ADD BID 111111 MATH 100 20
+# Status of MATH
+STATUS MATH
+# New bid of 111111 for 100 of BIO at 6.78
+ADD BID 111111 BIO 100 6.78
+# Status of BIO
+STATUS BIO
+# New ask of 100003 for 100 MATH at 20 (triggers a transaction at $20)
+ADD ASK 100003 MATH 100 20
+# Status of MATH (price should be $20)
+STATUS MATH
+# Balance of 100003 (should be 58211.02)
+BALANCE 100003
+# Balance of 111111 (should be 290.01)
+BALANCE 111111
+# New ask of 100002 for 100 BIO at 6.78 (shoud trigger transaction at 6.78)
+ADD ASK 100002 BIO 100 6.78
+# Status of BIO (price should be $6.78)
+STATUS BIO
+# Balance of 100002 (should be 25952.04, and own only once the BIO stock)
+BALANCE 100002
+# Balance of 111111 (should be -397.98)
+BALANCE 111111
+#QUIT
+QUIT
